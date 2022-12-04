@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Random; 
 public class JavaServer {
+    /*Função quer gera o numero aleatoria de 1 a 5 */
     public static int GenerateRandom(){
         int min = 1;       
         int max = 5;
@@ -9,6 +10,7 @@ public class JavaServer {
         
         return random_int;
     }
+    /*Função que escolhe a jogada a partir do numero aleatorio */
     public static String escolha(int random){
         String opcaoServer=null;
         if (random == 1){
@@ -34,6 +36,7 @@ public class JavaServer {
         }
         return opcaoServer;
     }
+    /*Função que define o ganhador */
     public static String Winner(String myChoice, String msgCliente){
         /*#Tesoura corta papel
         #Papel cobre pedra
@@ -141,6 +144,7 @@ public class JavaServer {
         return winner;
     }
 
+    /*Função main */
     public static void main(String[] args) {
         try{ 
             /*Inicio da conexão */
@@ -151,8 +155,9 @@ public class JavaServer {
             int countClient = 0;
             int countServer = 0;
             int countEmpate = 0;
-
+            /*Loop do sorteio da jogada e do envio e recebimento da mensagem*/
             for(int i=0;i<15;i++){
+                /*Enviando e recebendo a mensagem do cliente */
                 DataInputStream in = new DataInputStream(soc.getInputStream());
                 int randomNum = GenerateRandom();
                 String myChoice = escolha(randomNum);
@@ -178,6 +183,7 @@ public class JavaServer {
                 }
                 
             }
+        /*Printando quem é o vencedor final após as 15 rodadas*/
         if(countClient<countServer){
             System.out.println("Vencedor final foi o Servidor com "+countServer+" vitorias, "+countEmpate+" empates e "+countClient+" derrotas");
         }
