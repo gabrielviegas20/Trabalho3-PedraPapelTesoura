@@ -110,12 +110,11 @@ for i in range(0,15):
     print("-----------------------------------------------------")
     pdf.drawString(10 if i<10 else mm2p(110),mm2p(290-20*i-15) if i<10 else mm2p(290-20*(i-10)-15),"-----------------------------------------------------")
     ##Inserindo na base de dados
-    db.resultados.insert_many(
-        [
-        {"Cliente": mensagemEnvioClient},
-        {"Servidor": msgrecv},
-        {"Vencedor": vencedor}
-        ]
+    db.resultados.insert_one(
+        {"Cliente": mensagemEnvioClient,
+        "Servidor": msgrecv,
+        "Vencedor": vencedor
+        }
     )
 
 ##Printando quem é o vencedor final após as 15 rodadas
